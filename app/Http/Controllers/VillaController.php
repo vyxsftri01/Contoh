@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\transaksi;
 use Illuminate\Http\Request;
 
-class TransaksiController extends Controller
+class VillaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,12 @@ class TransaksiController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index()
     {
         //
-        $transaksi = transaksi::all();
-        return view('transaksi.index', compact('transaksi'));
+        $villa = villa::all();
+        return view('villa.index', compact('villa'));
     }
 
     /**
@@ -33,8 +33,7 @@ class TransaksiController extends Controller
     public function create()
     {
         //
-        return view('transaksi.create');
-
+        return view('villa.create');
     }
 
     /**
@@ -47,82 +46,81 @@ class TransaksiController extends Controller
     {
         //
         $validated = $request->validate([
-            'id_pemesanan' => 'required',
-            'total' => 'required',
+            'jrnis_villa' => 'required',
+            'harga' => 'required',
             
         ]);
 
-        $transaksi = new transaksi();
-        $transaksi->id_pemesanan = $request->pemesanan;
-        $transaksi->total = $request->total;
-        $transaksi->save();
-        return redirect()->route('transaksi.index')
+        $villa = new villa();
+        $villa->jenis_villa = $request->pemesanan;
+        $villa->harga = $request->total;
+        $villa->save();
+        return redirect()->route('villa.index')
             ->with('success', 'Data berhasil dibuat!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\transaksi  $transaksi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(transaksi $transaksi)
+    public function show($id)
     {
         //
-        $transaksi = transaksi::findOrFail($id);
-        return view('transaksi.show', compact('transaksi'));
-
+        $villa = villa::findOrFail($id);
+        return view('villa.show', compact('villa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\transaksi  $transaksi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(transaksi $transaksi)
+    public function edit($id)
     {
         //
-        $transaksi = transaksi::findOrFail($id);
-        return view('transaksi.edit', compact('transaksi'));
+        $villa = villa::findOrFail($id);
+        return view('villa.edit', compact('villa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\transaksi  $transaksi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, transaksi $transaksi)
+    public function update(Request $request, $id)
     {
         //
         $validated = $request->validate([
-            'id_pemesanan' => 'required',
-            'total' => 'required',
+            'jrnis_villa' => 'required',
+            'harga' => 'required',
             
         ]);
 
-        $transaksi = new transaksi();
-        $transaksi->id_pemesanan = $request->pemesanan;
-        $transaksi->total = $request->total;
-        $transaksi->save();
-        return redirect()->route('transaksi.index')
+        $villa = new villa();
+        $villa->jenis_villa = $request->pemesanan;
+        $villa->harga = $request->total;
+        $villa->save();
+        return redirect()->route('villa.index')
             ->with('success', 'Data berhasil dibuat!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\transaksi  $transaksi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(transaksi $transaksi)
+    public function destroy($id)
     {
         //
-        $transaksi = transaksi::findOrFail($id);
-        $transaksi->delete();
-        return redirect()->route('transaksi.index')
+        $villa = villa::findOrFail($id);
+        $villa->delete();
+        return redirect()->route('villa.index')
             ->with('success', 'Data berhasil dihapus!');
     }
 }

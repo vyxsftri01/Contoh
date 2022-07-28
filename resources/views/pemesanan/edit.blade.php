@@ -7,71 +7,68 @@
                 @include('layouts/_flash')
                 <div class="card">
                     <div class="card-header">
-                        Data identitas
+                        Data pemesanan
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('identitas.update', $identitas->id) }}" method="post">
+                        <form action="{{ route('pemesanan.update', $pemesanan->id) }}" method="post">
                             @csrf
                             @method('put')
                             <div class="mb-3">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control  @error('nama') is-invalid @enderror"
-                                    name="nama" value="{{ $identitas->nama }}">
-                                @error('nama')
+                                <label class="form-label">Identitas</label>
+                                <input type="text" class="form-control  @error('id_identitas') is-invalid @enderror"
+                                    name="id_identitas" value="{{ $pemesanan->id_identitas }}">
+                                @error('id_identitas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Alamat</label>
+                                <label class="form-label">Jumlah pemesanan</label>
                                 <input type="text" class="form-control  @error('alamat') is-invalid @enderror"
-                                    name="alamat" value="{{ $identitas->alamat }}">
+                                    name="alamat" value="{{ $pemesanan->alamat }}">
                                 @error('alamat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                          
                             <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
-                                        type="radio" name="jenis_kelamin" value="Laki-laki"
-                                        @if ($identitas->jenis_kelamin == 'Laki-laki') checked @endif>
-                                    <label class="form-check-label">
-                                        Laki-laki
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
-                                        type="radio" name="jenis_kelamin" value="Perempuan"
-                                        @if ($identitas->jenis_kelamin == 'Perempuan') checked @endif>
-                                    <label class="form-check-label">
-                                        Perempuan
-                                    </label>
-                                </div>
-                                @error('jenis_kelamin')
+                                <label class="form-label"> Lama sewa</label>
+                                <input type="datextte" class="form-control  @error('lamas') is-invalid @enderror"
+                                    name="lamas" value="{{ $pemesanan->lamas }}">
+                                @error('lamas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label"> No Telepon</label>
-                                <input type="datextte" class="form-control  @error('no_tlp') is-invalid @enderror"
-                                    name="no_tlp" value="{{ $identitas->no_tlp }}">
-                                @error('no_tlp')
+                                <label class="form-label"> Tanggal masuk</label>
+                                <input type="datextte" class="form-control  @error('tgl_masuk') is-invalid @enderror"
+                                    name="tgl_masuk" value="{{ $pemesanan->tgl_masuk }}">
+                                @error('tgl_masuk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label"> No KTP</label>
-                                <input type="datextte" class="form-control  @error('no_ktp') is-invalid @enderror"
-                                    name="no_ktp" value="{{ $identitas->no_ktp }}">
-                                @error('no_ktp')
+                                <label class="form-label"> Tanggal keluar</label>
+                                <input type="datextte" class="form-control  @error('tgl_keluar') is-invalid @enderror"
+                                    name="tgl_keluar" value="{{ $pemesanan->tgl_keluar }}">
+                                @error('tgl_keluar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"> Villa</label>
+                                <input type="datextte" class="form-control  @error('id_villa') is-invalid @enderror"
+                                    name="id_villa" value="{{ $pemesanan->id_villa }}">
+                                @error('id_villa')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
